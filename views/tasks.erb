@@ -1,0 +1,34 @@
+<h1> Pending tasks till <%= time %> </h1>
+<form action="/add_task" method="POST">
+<input type="text" name="task" /> <br>
+<input type="submit" value="Add Task" />
+</form>
+<ul>
+<% tasks.each do |task|  %>
+
+<% if task.completed %>
+	<li class="strikethrough">
+<% else %>
+	<li>
+<% end %>
+ 
+ <%= task.task  %>
+	
+	<form action="/toggle_task" method="POST">
+
+<input type="hidden" name="task_id" value="<%= task.id %>"/>
+<input type="submit" value="Toggle Task">
+
+	</form>
+
+
+</li>
+<% end %>
+</ul>
+
+
+<style>
+	.strikethrough {
+		text-decoration: line-through;
+	}
+</style>
